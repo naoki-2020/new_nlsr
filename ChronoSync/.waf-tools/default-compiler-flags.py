@@ -191,7 +191,7 @@ class GccFlags(GccBasicFlags):
         flags['CXXFLAGS'] += ['-fdiagnostics-color',
                               '-Wredundant-tags',
                               ]
-        if platform.machine() == 'armv7l' and self.getCompilerVersion(conf) >= (7, 1, 0):
+        if platform.machine() == 'armv7l':
             flags['CXXFLAGS'] += ['-Wno-psabi'] # Bug #5106
         return flags
 

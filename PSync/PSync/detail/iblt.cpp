@@ -210,7 +210,7 @@ IBLT::appendToName(ndn::Name& name) const
 std::vector<uint32_t>
 IBLT::extractValueFromName(const ndn::name::Component& ibltName) const
 {
-  auto decompressedBuf = decompress(m_compressionScheme, ibltName.value_size());
+  auto decompressedBuf = decompress(m_compressionScheme, ibltName.value_bytes());
 
   if (decompressedBuf->size() % 4 != 0) {
     NDN_THROW(Error("Received IBF cannot be decompressed correctly!"));

@@ -19,7 +19,7 @@ def configure(conf):
         if ccver < (7, 4, 0):
             errmsg = ('The version of gcc you are using is too old.\n'
                       'The minimum supported gcc version is 7.4.')
-            conf.flags = GccFlags()
+        conf.flags = GccFlags()
     elif cxx == 'clang':
         if Utils.unversioned_sys_platform() == 'darwin':
             if ccver < (10, 0, 0):
@@ -28,7 +28,7 @@ def configure(conf):
             elif ccver < (11, 0, 0):
                 warnmsg = ('Using a version of Xcode older than 11.3 is not '
                            'officially supported and may result in build failures.')
-        elif ccver < (6, 0, 0):
+        elif ccver < (6, 0, 0):        
             errmsg = ('The version of clang you are using is too old.\n'
                       'The minimum supported clang version is 6.0.')
         conf.flags = ClangFlags()
@@ -191,7 +191,7 @@ class GccFlags(GccBasicFlags):
         flags['CXXFLAGS'] += ['-fdiagnostics-color',
                               '-Wredundant-tags',
                               ]
-        if platform.machine() == 'armv7l':
+        if platform.machine() == 'armv7l' and self.getCompilerVersion(conf) >= (7, 1, 0):
             flags['CXXFLAGS'] += ['-Wno-psabi'] # Bug #5106
         return flags
 
